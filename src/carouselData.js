@@ -1,0 +1,122 @@
+export const fashionArr = [ 
+  {
+    "id": 1,
+    "index": 1,
+    "src": "/img/logo.jpg",
+    "alt": "item",
+  },
+  {
+    "id": 2,
+    "index": 1,
+    "src": "/img/logo.jpg",
+    "alt": "item",
+  },
+  {
+    "id": 3,
+    "index": 1,
+    "src": "/img/logo.jpg",
+    "alt": "item",
+  },
+  {
+    "id": 4,
+    "index": 1,
+    "src": "/img/logo.jpg",
+    "alt": "item",
+  },
+  {
+    "id": 5,
+    "index": 1,
+    "src": "/img/logo.jpg",
+    "alt": "item",
+  },
+  {
+    "id": 6,
+    "index": 2,
+    "src": "/img/mens fashion.jpg",
+    "alt": "item",
+  },
+  {
+    "id": 7,
+    "index": 2,
+    "src": "/img/mens fashion.jpg",
+    "alt": "item",
+  },
+  {
+    "id": 8,
+    "index": 2,
+    "src": "/img/mens fashion.jpg",
+    "alt": "item",
+  },
+  {
+    "id": 9,
+    "index": 2,
+    "src": "/img/mens fashion.jpg",
+    "alt": "item",
+  },
+  {
+    "id": 10,
+    "index": 2,
+    "src": "/img/mens fashion.jpg",
+    "alt": "item",
+  },
+  {
+    "id": 11,
+    "index": 3,
+    "src": "/img/logo.jpg",
+    "alt": "item",
+  },
+  {
+    "id": 12,
+    "index": 3,
+    "src": "/img/logo.jpg",
+    "alt": "item",
+  },
+  {
+    "id": 13,
+    "index": 3,
+    "src": "/img/logo.jpg",
+    "alt": "item",
+  },
+  {
+    "id": 14,
+    "index": 3,
+    "src": "/img/logo.jpg",
+    "alt": "item",
+  },
+  {
+    "id": 15,
+    "index": 3,
+    "src": "/img/logo.jpg",
+    "alt": "item",
+  },
+  {
+    "id": 16,
+    "index": 4,
+    "src": "/img/mens fashion.jpg",
+    "alt": "item",
+  },
+  {
+    "id": 17,
+    "index": 4,
+    "src": "/img/mens fashion.jpg",
+    "alt": "item",
+  },
+  {
+    "id": 18,
+    "index": 4,
+    "src": "/img/mens fashion.jpg",
+    "alt": "item",
+  },
+  {
+    "id": 19,
+    "index": 4,
+    "src": "/img/mens fashion.jpg",
+    "alt": "item",
+  },
+  {
+    "id": 20,
+    "index": 4,
+    "src": "/img/mens fashion.jpg",
+    "alt": "item",
+  }
+]

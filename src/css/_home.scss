@@ -1,0 +1,59 @@
+#home {
+    min-height: 100vh;
+    width: 100%;
+    background-image: url('/img/mens\ fashion.jpg');
+    background-position: top;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+
+    &::before {
+        content: '';
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 1;
+    }
+
+    .home-title {
+        width: 100%;
+        text-align: center;
+        z-index: 2;
+
+        h1 {
+            font-size: 5rem;
+            font-weight: 600;
+            letter-spacing: 10px;
+            color: white;
+        }
+    }
+
+    .scroll {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+
+        .scroll-down {
+            outline: none;
+            border: none;
+            padding: none;
+            background: none;
+            cursor: pointer;
+
+            .arrow-down {
+                font-size: 4rem;
+                color: white;
+                transition: 0.4s ease;
+
+                &:hover {
+                    font-size: 2.6rem;
+                }
+            }
+        }
+    }
+}

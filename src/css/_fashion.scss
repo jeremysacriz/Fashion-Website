@@ -1,0 +1,188 @@
+#fashion {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+
+    .fashion-carousel {
+        height: 80%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 50px;
+        list-style: none;
+
+        .carousel-item {
+            height: 100%;
+            width: 100%;
+            position: relative;
+            
+            &:not(:last-child) {
+                margin-right: 20px;
+            }
+
+            .carousel-btn {
+                height: 100%;
+                width: 100%;
+                background-color: transparent;
+                outline: none;
+                border: none;
+                cursor: pointer;
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+    
+                .img-overlay {
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: transparent;
+                    opacity: 0;
+                    transition: 0.4s ease;
+                    z-index: 2;
+    
+                    h1 {
+                        color: white;
+                        font-size: 2.4rem;
+                        font-weight: 500;
+                        letter-spacing: 5px;
+                        pointer-events: none;
+                    }
+                }
+            }
+
+            &:hover {
+                .img-overlay {
+                    background-color: black;
+                    opacity: 0.6;
+                }
+            }
+        }
+    }
+
+    .fashion-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            height: 60%;
+            width: 40%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .overlay-btns {
+            position: absolute;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            .overlay-btn-left,
+            .overlay-btn-right {
+                position: absolute;
+                color: white;
+                background-color: transparent;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                transform: scale(1);
+                transition: transform 0.4s ease;
+
+                &:hover {
+                    transform: scale(0.7);
+                }
+
+                span {
+                    font-size: 3rem;
+                    font-weight: 600;
+                }
+            }
+
+            .overlay-btn-left {
+                left: 300px;
+            }
+
+            .overlay-btn-right {
+                right: 300px;
+            }
+        }
+
+        .close-overlay {
+            position: absolute;
+            top: 50px;
+            right: 100px;
+            
+            .close-overlay-btn {
+                background-color: transparent;
+                outline: none;
+                border: none;
+                cursor: pointer;
+                transform: scale(1);
+                transition: transform 0.4s ease;
+
+                &:hover {
+                    transform: scale(0.7);
+                }
+
+                span {
+                    color: white;
+                    font-size: 2rem;
+                }
+            }
+        }
+    }
+
+    .carousel-btns {
+        position: absolute;
+        height: 80%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .left-btn,
+        .right-btn {
+            outline: none;
+            border: none;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 50px;
+            color: white;
+            background-color: black;
+            cursor: pointer;
+            transition: 0.4s ease;
+            z-index: 500;
+
+            &:hover,
+            &:disabled {
+                background-color: rgba(0, 0, 0, 0.4);
+            }
+
+            &:disabled {
+                cursor: default;
+            }
+        }
+    }
+}

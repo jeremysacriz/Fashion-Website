@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan&display=swap"); /* Font-Family: 'League Spartan' */
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"); /* Google Icons */
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+body {
+   font-family: "League Spartan", sans-serif;
+   font-size: 12px;
+}
+
+#app {
+    @import "./home";
+    @import "./header";
+    @import "./fashion";
+}

@@ -1,0 +1,258 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan&display=swap"); /* Font-Family: 'League Spartan' */
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"); /* Google Icons */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "League Spartan", sans-serif;
+  font-size: 12px;
+}
+
+#app #home {
+  min-height: 100vh;
+  width: 100%;
+  background-image: url("/img/mens fashion.jpg");
+  background-position: top;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+}
+#app #home::before {
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+#app #home .home-title {
+  width: 100%;
+  text-align: center;
+  z-index: 2;
+}
+#app #home .home-title h1 {
+  font-size: 5rem;
+  font-weight: 600;
+  letter-spacing: 10px;
+  color: white;
+}
+#app #home .scroll {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+#app #home .scroll .scroll-down {
+  outline: none;
+  border: none;
+  padding: none;
+  background: none;
+  cursor: pointer;
+}
+#app #home .scroll .scroll-down .arrow-down {
+  font-size: 4rem;
+  color: white;
+  transition: 0.4s ease;
+}
+#app #home .scroll .scroll-down .arrow-down:hover {
+  font-size: 2.6rem;
+}
+#app #header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8vh;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#app #header .header-container {
+  height: 100%;
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#app #header .header-container .header-logo {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+#app #fashion {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+#app #fashion .fashion-carousel {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 50px;
+  list-style: none;
+}
+#app #fashion .fashion-carousel .carousel-item {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+#app #fashion .fashion-carousel .carousel-item:not(:last-child) {
+  margin-right: 20px;
+}
+#app #fashion .fashion-carousel .carousel-item .carousel-btn {
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+#app #fashion .fashion-carousel .carousel-item .carousel-btn img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+#app #fashion .fashion-carousel .carousel-item .carousel-btn .img-overlay {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  opacity: 0;
+  transition: 0.4s ease;
+  z-index: 2;
+}
+#app #fashion .fashion-carousel .carousel-item .carousel-btn .img-overlay h1 {
+  color: white;
+  font-size: 2.4rem;
+  font-weight: 500;
+  letter-spacing: 5px;
+  pointer-events: none;
+}
+#app #fashion .fashion-carousel .carousel-item:hover .img-overlay {
+  background-color: black;
+  opacity: 0.6;
+}
+#app #fashion .fashion-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#app #fashion .fashion-overlay img {
+  height: 60%;
+  width: 40%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+#app #fashion .fashion-overlay .overlay-btns {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+#app #fashion .fashion-overlay .overlay-btns .overlay-btn-left,
+#app #fashion .fashion-overlay .overlay-btns .overlay-btn-right {
+  position: absolute;
+  color: white;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transform: scale(1);
+  transition: transform 0.4s ease;
+}
+#app #fashion .fashion-overlay .overlay-btns .overlay-btn-left:hover,
+#app #fashion .fashion-overlay .overlay-btns .overlay-btn-right:hover {
+  transform: scale(0.7);
+}
+#app #fashion .fashion-overlay .overlay-btns .overlay-btn-left span,
+#app #fashion .fashion-overlay .overlay-btns .overlay-btn-right span {
+  font-size: 3rem;
+  font-weight: 600;
+}
+#app #fashion .fashion-overlay .overlay-btns .overlay-btn-left {
+  left: 300px;
+}
+#app #fashion .fashion-overlay .overlay-btns .overlay-btn-right {
+  right: 300px;
+}
+#app #fashion .fashion-overlay .close-overlay {
+  position: absolute;
+  top: 50px;
+  right: 100px;
+}
+#app #fashion .fashion-overlay .close-overlay .close-overlay-btn {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transform: scale(1);
+  transition: transform 0.4s ease;
+}
+#app #fashion .fashion-overlay .close-overlay .close-overlay-btn:hover {
+  transform: scale(0.7);
+}
+#app #fashion .fashion-overlay .close-overlay .close-overlay-btn span {
+  color: white;
+  font-size: 2rem;
+}
+#app #fashion .carousel-btns {
+  position: absolute;
+  height: 80%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#app #fashion .carousel-btns .left-btn,
+#app #fashion .carousel-btns .right-btn {
+  outline: none;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 50px;
+  color: white;
+  background-color: black;
+  cursor: pointer;
+  transition: 0.4s ease;
+  z-index: 500;
+}
+#app #fashion .carousel-btns .left-btn:hover, #app #fashion .carousel-btns .left-btn:disabled,
+#app #fashion .carousel-btns .right-btn:hover,
+#app #fashion .carousel-btns .right-btn:disabled {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+#app #fashion .carousel-btns .left-btn:disabled,
+#app #fashion .carousel-btns .right-btn:disabled {
+  cursor: default;
+}/*# sourceMappingURL=index.css.map */
