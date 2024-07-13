@@ -1,4 +1,4 @@
-export const fashionArr = [ 
+export const fashionArr = [
   {
     "id": 1,
     "position": 1,
@@ -118,5 +118,5 @@ export const fashionArr = [
     "position": 4,
     "src": "/img/mens fashion.jpg",
     "alt": "item",
-  }
+  },
 ]

@@ -150,17 +150,44 @@
             }
         }
 
-        .overlay-index {
+        .overlay-index-container {
             position: absolute;
             bottom: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
 
-            h1 {
-                color: white;
-                font-size: 1.6rem;
-                letter-spacing: 10px;
+            .overlay-index {
+                height: 100%;
+                display: flex;
+                align-items: center;
+                position: relative;
+                overflow: hidden;
+
+                h1 {
+                    position: absolute;
+                    display: flex;
+                    align-items: center;
+                    color: white;
+                    font-size: 1.6rem;
+                    letter-spacing: 10px;
+
+                    &:first-child {
+                        left: 0;
+                    }
+                }
+    
+                .overlay-line {
+                    margin: 0 25px;
+                    margin-left: 40px;
+                    border-top: 3px solid white;
+                    width: 40px;
+
+                    &[data-active="active"] {
+                        margin-left: 60px;
+                    }
+                }
+    
+                .carousel-length {
+                    position: relative;
+                }
             }
         }
     }

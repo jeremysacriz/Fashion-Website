@@ -223,17 +223,39 @@ body {
   color: white;
   font-size: 2rem;
 }
-#app #fashion .fashion-overlay .overlay-index {
+#app #fashion .fashion-overlay .overlay-index-container {
   position: absolute;
   bottom: 100px;
+}
+#app #fashion .fashion-overlay .overlay-index-container .overlay-index {
+  height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
-#app #fashion .fashion-overlay .overlay-index h1 {
+#app #fashion .fashion-overlay .overlay-index-container .overlay-index h1 {
+  position: absolute;
+  display: flex;
+  align-items: center;
   color: white;
   font-size: 1.6rem;
   letter-spacing: 10px;
+}
+#app #fashion .fashion-overlay .overlay-index-container .overlay-index h1:first-child {
+  left: 0;
+}
+#app #fashion .fashion-overlay .overlay-index-container .overlay-index .overlay-line {
+  margin: 0 25px;
+  margin-left: 40px;
+  border-top: 3px solid white;
+  width: 40px;
+}
+#app #fashion .fashion-overlay .overlay-index-container .overlay-index .overlay-line[data-active=active] {
+  margin-left: 60px;
+}
+#app #fashion .fashion-overlay .overlay-index-container .overlay-index .carousel-length {
+  position: relative;
 }
 #app #fashion .carousel-btns {
   position: absolute;
