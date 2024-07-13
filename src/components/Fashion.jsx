@@ -1,31 +1,41 @@
-import { useState, useEffect, forwardRef } from 'react';
+import { useState, forwardRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 import { fashionArr } from "../carouselData.js";
+import { increase, decrease, increment, decrement, start, end, setCarouselIndex } from '../Redux/actions/actions';
 
 export const Fashion = forwardRef((props, ref) => {
-  const [ prevIndex, setPrevIndex ] = useState()
-  const [ activeIndex, setActiveIndex ] = useState(1)
   const [ overlay, setOverlay ] = useState()
-  const [ img, setImg ] = useState()
+
+  const dispatch = useDispatch()
+
+  const activeIndex = useSelector(state => state.indexReducer.activeIndex)
+  const carouselIndex = useSelector(state => state.indexReducer.carouselIndex)
 
   let index = fashionArr.length / 5;
 
   const leftClick = () => {
-    setPrevIndex(activeIndex)
-
-    if (activeIndex === 1) setActiveIndex(index + 1)
-    setActiveIndex(prev => prev - 1)
+    dispatch(decrement())
   }
 
   const rightClick = () => {
-    setPrevIndex(activeIndex)
+    dispatch(increment())
+  }
 
-    if (activeIndex === (index)) setActiveIndex(0)
-    setActiveIndex(prev => prev + 1)
+  const leftIndex = () => {
+    dispatch(decrease())
+
+    if (carouselIndex === 0) dispatch(end(fashionArr))
+  }
+
+  const rightIndex = () => {
+    dispatch(increase())
+
+    if (carouselIndex === fashionArr.length - 1) dispatch(start())
   }
 
   const imgOverlay = (item) => {
     setOverlay(true)
-    setImg(item.src)
+    dispatch(setCarouselIndex(item.id))
   }
 
   return (
@@ -33,10 +43,10 @@ export const Fashion = forwardRef((props, ref) => {
       <ul className="fashion-carousel">
         {
           fashionArr.map((item) => {
-            if (item.index === activeIndex) {
+            if (item.position === activeIndex) {
               return (
                 <li key={item.id} className="carousel-item">
-                  <button type="button" className="carousel-btn" onClick={(item) => imgOverlay(item)}>
+                  <button type="button" className="carousel-btn" onClick={() => imgOverlay(item)}>
                     <img src={item.src} alt={item.alt} />
                     <div className="img-overlay">
                       <h1>View Item?</h1>
@@ -51,12 +61,12 @@ export const Fashion = forwardRef((props, ref) => {
       {
         overlay === true &&
         <div className="fashion-overlay">
-          <img src="\img\logo.jpg" alt="img" />
+          <img src={fashionArr[carouselIndex].src} alt="img" />
           <div className="overlay-btns">
-            <button type="button" className="overlay-btn-left">
+            <button type="button" className="overlay-btn-left" onClick={leftIndex}>
               <span className="material-symbols-outlined">chevron_left</span>
             </button>
-            <button type="button" className="overlay-btn-right">
+            <button type="button" className="overlay-btn-right" onClick={rightIndex}>
               <span className="material-symbols-outlined">chevron_right</span>
             </button>
           </div>
@@ -64,6 +74,9 @@ export const Fashion = forwardRef((props, ref) => {
             <button type="button" className="close-overlay-btn" onClick={() => setOverlay(false)}>
             <span className="material-symbols-outlined">close</span>
             </button>
+          </div>
+          <div className="overlay-index">
+            <h1>{carouselIndex + 1} / {fashionArr.length}</h1>
           </div>
         </div>
       }

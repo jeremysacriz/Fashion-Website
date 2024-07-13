@@ -9,7 +9,7 @@ export const Home = ({ resultRef }) => {
     <>
       <section id="home">
         <div className="home-title">
-          <h1>Welcome to Fashion!</h1>
+          <h1>Welcome to my Fashion Show!</h1>
         </div>
         <div className="scroll">
           <button className="scroll-down" onClick={scrollDown}>

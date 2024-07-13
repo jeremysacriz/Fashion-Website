@@ -142,7 +142,7 @@ body {
 }
 #app #fashion .fashion-carousel .carousel-item .carousel-btn .img-overlay h1 {
   color: white;
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   font-weight: 500;
   letter-spacing: 5px;
   pointer-events: none;
@@ -166,8 +166,8 @@ body {
 #app #fashion .fashion-overlay img {
   height: 60%;
   width: 40%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: contain;
+     object-fit: contain;
   -o-object-position: center;
      object-position: center;
 }
@@ -222,6 +222,18 @@ body {
 #app #fashion .fashion-overlay .close-overlay .close-overlay-btn span {
   color: white;
   font-size: 2rem;
+}
+#app #fashion .fashion-overlay .overlay-index {
+  position: absolute;
+  bottom: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#app #fashion .fashion-overlay .overlay-index h1 {
+  color: white;
+  font-size: 1.6rem;
+  letter-spacing: 10px;
 }
 #app #fashion .carousel-btns {
   position: absolute;
