@@ -94,23 +94,31 @@ body {
   position: relative;
   overflow: hidden;
 }
-#app #fashion .fashion-carousel {
+#app #fashion .fashion-carousel-container {
+  height: 80%;
+  width: 100%;
+}
+#app #fashion .fashion-carousel-container .fashion-carousel {
   height: 80%;
   width: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 0 50px;
   list-style: none;
+  overflow: hidden;
+  position: absolute;
+  top: 10%;
 }
-#app #fashion .fashion-carousel .carousel-item {
+#app #fashion .fashion-carousel-container .fashion-carousel .carousel-item {
   height: 100%;
   width: 100%;
   position: relative;
 }
-#app #fashion .fashion-carousel .carousel-item:not(:last-child) {
+#app #fashion .fashion-carousel-container .fashion-carousel .carousel-item:not(:last-child) {
   margin-right: 20px;
 }
-#app #fashion .fashion-carousel .carousel-item .carousel-btn {
+#app #fashion .fashion-carousel-container .fashion-carousel .carousel-item .carousel-btn {
   height: 100%;
   width: 100%;
   background-color: transparent;
@@ -118,15 +126,20 @@ body {
   border: none;
   cursor: pointer;
 }
-#app #fashion .fashion-carousel .carousel-item .carousel-btn img {
+#app #fashion .fashion-carousel-container .fashion-carousel .carousel-item .carousel-btn:hover .img-overlay {
+  background-color: black;
+  opacity: 0.6;
+}
+#app #fashion .fashion-carousel-container .fashion-carousel .carousel-item .carousel-btn img {
   height: 100%;
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
+  z-index: -1;
 }
-#app #fashion .fashion-carousel .carousel-item .carousel-btn .img-overlay {
+#app #fashion .fashion-carousel-container .fashion-carousel .carousel-item .carousel-btn .img-overlay {
   height: 100%;
   width: 100%;
   position: absolute;
@@ -140,16 +153,12 @@ body {
   transition: 0.4s ease;
   z-index: 2;
 }
-#app #fashion .fashion-carousel .carousel-item .carousel-btn .img-overlay h1 {
+#app #fashion .fashion-carousel-container .fashion-carousel .carousel-item .carousel-btn .img-overlay h1 {
   color: white;
   font-size: 2.2rem;
   font-weight: 500;
   letter-spacing: 5px;
   pointer-events: none;
-}
-#app #fashion .fashion-carousel .carousel-item:hover .img-overlay {
-  background-color: black;
-  opacity: 0.6;
 }
 #app #fashion .fashion-overlay {
   position: fixed;

@@ -48,42 +48,61 @@ export const Fashion = forwardRef((props, ref) => {
     initial: direction => {
        return {
           y: direction > 0 ? "200%" : "-200%",
-          opacity: 0,
        }
     },
     animate: {
        y: 0,
-       transition: { duration: 0.5 },
-       opacity: 1,
+       transition: { duration: 0.6 },
     },
     exit: direction => {
        return {
           y: direction > 0 ? "-200%" : "200%",
           transition: { duration: 0.5 },
-          opacity: 0,
        }
     },
  }
 
+ const carouselVariants = {
+  initial: direction => {
+    return {
+      x: direction > 0 ? "100%" : "-100%",
+    }
+  },
+  animate: {
+    x: 0,
+    transition: { duration: 1 },
+  },
+  exit: direction => {
+      return {
+        x: direction > 0 ? "-100%" : "100%",
+        transition: { duration: 1 },
+      }
+  },
+ }
+
+ const newArr = fashionArr.filter(item => item.position === activeIndex)
+
   return (
     <section id="fashion" ref={ref}>
-        <ul className="fashion-carousel">
+        <ul className="fashion-carousel-container">
+          <AnimatePresence initial={false} custom={direction}>
+            <motion.li className="fashion-carousel" key={fashionArr[activeIndex].id} variants={carouselVariants} initial="initial" animate="animate" exit="exit" custom={direction}>
             {
-              fashionArr.map((item) => {
-                if (item.position === (activeIndex)) {
-                  return (
-                    <li key={item.id} className="carousel-item">
-                      <button type="button" className="carousel-btn" onClick={() => imgOverlay(item)}>
-                        <img src={item.src} alt={item.alt} />
-                        <div className="img-overlay">
-                          <h1>View Item?</h1>
-                        </div>
-                      </button>
-                    </li>
-                    )
-                }
+              newArr.map((item) => {
+                return (
+                  <div key={item.id} className="carousel-item">
+                    <button type="button" className="carousel-btn" onClick={() => imgOverlay(item)}>
+                      <img src={item.src} alt={item.alt} />
+                      <div className="img-overlay">
+                        <h1>View Item?</h1>
+                      </div>
+                    </button>
+                  </div>
+                )
               })
-            }
+            }        
+            </motion.li>  
+          </AnimatePresence>     
         </ul>
       {
         overlay === true &&
