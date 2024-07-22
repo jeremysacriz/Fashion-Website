@@ -1,6 +1,7 @@
 // For main carousel
 const initialState = {
-    activeIndex: 1,
+    prevIndex: undefined,
+    activeIndex: 0,
     carouselIndex: 0,
 }
 
@@ -10,12 +11,14 @@ export const indexReducer = (state = initialState, action) => {
         case "INCREMENT":
             return {
                 ...state,
-                activeIndex: state.activeIndex + 1
+                prevIndex: state.activeIndex,
+                activeIndex: state.activeIndex + 1,
             }
         case "DECREMENT":
             return {
                 ...state,
-                activeIndex: state.activeIndex - 1
+                prevIndex: state.activeIndex,
+                activeIndex: state.activeIndex - 1,
             }
 
         // For overlay carousel index

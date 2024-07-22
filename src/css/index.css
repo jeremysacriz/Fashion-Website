@@ -92,45 +92,77 @@ body {
   display: flex;
   align-items: center;
   position: relative;
-  overflow: hidden;
 }
-#app #fashion .fashion-carousel-container {
+#app #fashion .fashion-carousel {
   height: 80%;
   width: 100%;
-}
-#app #fashion .fashion-carousel-container .fashion-carousel {
-  height: 80%;
-  width: 100%;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 50px;
   list-style: none;
-  overflow: hidden;
-  position: absolute;
-  top: 10%;
 }
-#app #fashion .fashion-carousel-container .fashion-carousel .carousel-item {
+#app #fashion .fashion-carousel .carousel-item-container {
   height: 100%;
   width: 100%;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
 }
-#app #fashion .fashion-carousel-container .fashion-carousel .carousel-item:not(:last-child) {
-  margin-right: 20px;
-}
-#app #fashion .fashion-carousel-container .fashion-carousel .carousel-item .carousel-btn {
+#app #fashion .fashion-carousel .carousel-item-container .container {
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 100%;
   width: 100%;
-  background-color: transparent;
-  outline: none;
-  border: none;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transform: translateX(100%);
 }
-#app #fashion .fashion-carousel-container .fashion-carousel .carousel-item .carousel-btn:hover .img-overlay {
+#app #fashion .fashion-carousel .carousel-item-container .container[data-active=first] {
+  opacity: 1;
+  transform: translateX(0%);
+  z-index: 1000;
+}
+#app #fashion .fashion-carousel .carousel-item-container .container[data-active=prevLeft] {
+  animation: prevLeft 1s ease forwards;
+}
+#app #fashion .fashion-carousel .carousel-item-container .container[data-active=left] {
+  animation: slideLeft 1s ease forwards;
+}
+#app #fashion .fashion-carousel .carousel-item-container .container[data-active=prevRight] {
+  animation: prevRight 1s ease forwards;
+}
+#app #fashion .fashion-carousel .carousel-item-container .container[data-active=right] {
+  animation: slideRight 1s ease forwards;
+}
+#app #fashion .fashion-carousel .carousel-item-container .container .carousel-item {
+  height: 100%;
+  width: 25%;
+  margin-right: 20px;
+  position: relative;
+}
+#app #fashion .fashion-carousel .carousel-item-container .container .carousel-item:hover .carousel-item-btn .img-overlay {
   background-color: black;
   opacity: 0.6;
 }
-#app #fashion .fashion-carousel-container .fashion-carousel .carousel-item .carousel-btn img {
+#app #fashion .fashion-carousel .carousel-item-container .container .carousel-item:nth-child(5n) {
+  margin-right: 0;
+}
+#app #fashion .fashion-carousel .carousel-item-container .container .carousel-item .carousel-item-btn {
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  position: relative;
+}
+#app #fashion .fashion-carousel .carousel-item-container .container .carousel-item .carousel-item-btn img {
   height: 100%;
   width: 100%;
   -o-object-fit: cover;
@@ -139,7 +171,7 @@ body {
      object-position: center;
   z-index: -1;
 }
-#app #fashion .fashion-carousel-container .fashion-carousel .carousel-item .carousel-btn .img-overlay {
+#app #fashion .fashion-carousel .carousel-item-container .container .carousel-item .carousel-item-btn .img-overlay {
   height: 100%;
   width: 100%;
   position: absolute;
@@ -153,7 +185,7 @@ body {
   transition: 0.4s ease;
   z-index: 2;
 }
-#app #fashion .fashion-carousel-container .fashion-carousel .carousel-item .carousel-btn .img-overlay h1 {
+#app #fashion .fashion-carousel .carousel-item-container .container .carousel-item .carousel-item-btn .img-overlay h1 {
   color: white;
   font-size: 2.2rem;
   font-weight: 500;
@@ -297,5 +329,47 @@ body {
 }
 #app #fashion .carousel-btns .left-btn:disabled,
 #app #fashion .carousel-btns .right-btn:disabled {
-  cursor: default;
+  cursor: not-allowed;
+}
+@keyframes prevLeft {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(100%);
+  }
+}
+@keyframes slideLeft {
+  0% {
+    opacity: 1;
+    transform: translateX(-100%);
+  }
+  100% {
+    z-index: 1000;
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+@keyframes prevRight {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-100%);
+  }
+}
+@keyframes slideRight {
+  0% {
+    opacity: 1;
+    transform: translateX(100%);
+  }
+  100% {
+    z-index: 1000;
+    opacity: 1;
+    transform: translateX(0%);
+  }
 }/*# sourceMappingURL=index.css.map */

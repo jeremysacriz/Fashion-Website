@@ -4,12 +4,13 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { fashionArr } from "../carouselData.js";
 import { increase, decrease, increment, decrement, start, end, setCarouselIndex } from '../Redux/actions/actions';
 
+
 export const Fashion = forwardRef((props, ref) => {
   const [ overlay, setOverlay ] = useState()
   const [ direction, setDirection ] = useState()
 
   const dispatch = useDispatch()
-
+  const prevIndex = useSelector(state => state.indexReducer.prevIndex)
   const activeIndex = useSelector(state => state.indexReducer.activeIndex)
   const carouselIndex = useSelector(state => state.indexReducer.carouselIndex)
 
@@ -62,47 +63,73 @@ export const Fashion = forwardRef((props, ref) => {
     },
  }
 
- const carouselVariants = {
-  initial: direction => {
-    return {
-      x: direction > 0 ? "100%" : "-100%",
-    }
-  },
-  animate: {
-    x: 0,
-    transition: { duration: 1 },
-  },
-  exit: direction => {
-      return {
-        x: direction > 0 ? "-100%" : "100%",
-        transition: { duration: 1 },
-      }
-  },
- }
+  const dataSlides = (item) => {
+    if (item.id === activeIndex && prevIndex === undefined) return "first"
 
- const newArr = fashionArr.filter(item => item.position === activeIndex)
+    let slideRight = direction > 0
+    let slideLeft = direction < 0
+
+    if (slideRight && item.id === prevIndex) return "prevRight"
+    if (slideRight && item.id === activeIndex) return "right"
+    if (slideLeft && item.id === prevIndex) return "prevLeft"
+    if (slideLeft && item.id === activeIndex) return "left"
+  }
+
+  const carouselItem = (index) => {
+    let currIndex = index
+    let newArr = fashionArr.filter(item => item.position === currIndex)
+      
+    return (
+      <>
+        {
+          newArr.map(item => (
+            <div key={item.id} type="button" className="carousel-item" onClick={() => imgOverlay(item)}>
+              <button className="carousel-item-btn">
+                <img src={item.src} alt={item.alt} />
+                <div className="img-overlay">
+                  <h1>View Item?</h1>
+                </div>
+              </button>
+            </div>
+          ))
+        }
+      </>
+    )
+  }
+
+  let containerArr = [
+    {
+      'id': 0,
+      'cName': 'container',
+    },
+    {
+      'id': 1,
+      'cName': 'container',
+    },
+    {
+      'id': 2,
+      'cName': 'container',
+    },
+    {
+      'id': 3,
+      'cName': 'container',
+    },
+  ]
 
   return (
     <section id="fashion" ref={ref}>
-        <ul className="fashion-carousel-container">
-          <AnimatePresence initial={false} custom={direction}>
-            <motion.li className="fashion-carousel" key={fashionArr[activeIndex].id} variants={carouselVariants} initial="initial" animate="animate" exit="exit" custom={direction}>
+        <ul className="fashion-carousel">
+          <div className="carousel-item-container">
             {
-              newArr.map((item) => {
+              containerArr.map((item, index) => {
                 return (
-                  <div key={item.id} className="carousel-item">
-                    <button type="button" className="carousel-btn" onClick={() => imgOverlay(item)}>
-                      <img src={item.src} alt={item.alt} />
-                      <div className="img-overlay">
-                        <h1>View Item?</h1>
-                      </div>
-                    </button>
+                  <div className={item.cName} key={item.id} data-active={dataSlides(item)}>
+                    {carouselItem(index + 1)}
                   </div>
                 )
               })
-            }        
-            </motion.li>  
-          </AnimatePresence>     
+            }
+          </div>
         </ul>
       {
         overlay === true &&
@@ -133,10 +160,10 @@ export const Fashion = forwardRef((props, ref) => {
         </div>
       }
       <div className="carousel-btns">
-        <button className="left-btn" onClick={leftClick} disabled={activeIndex === 1 ? true : null}>
+        <button className="left-btn" onClick={leftClick} disabled={activeIndex === 0 ? true : null}>
           <span className="material-symbols-outlined">chevron_left</span>
         </button>
-        <button className="right-btn" onClick={rightClick} disabled={activeIndex === index ? true : null}>
+        <button className="right-btn" onClick={rightClick} disabled={activeIndex === index - 1 ? true : null}>
           <span className="material-symbols-outlined">chevron_right</span>
         </button>
       </div>
