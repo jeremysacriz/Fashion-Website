@@ -8,6 +8,7 @@ import { increase, decrease, increment, decrement, start, end, setCarouselIndex 
 export const Fashion = forwardRef((props, ref) => {
   const [ overlay, setOverlay ] = useState()
   const [ direction, setDirection ] = useState()
+  const [ indexDirection, setIndexDirection ] = useState()
 
   const dispatch = useDispatch()
   const prevIndex = useSelector(state => state.indexReducer.prevIndex)
@@ -27,14 +28,14 @@ export const Fashion = forwardRef((props, ref) => {
   }
 
   const leftIndex = () => {
-    setDirection(-1)
+    setIndexDirection(-1)
     dispatch(decrease())
 
     if (carouselIndex === 0) dispatch(end(fashionArr))
   }
 
   const rightIndex = () => {
-    setDirection(1)
+    setIndexDirection(1)
     dispatch(increase())
 
     if (carouselIndex === fashionArr.length - 1) dispatch(start())
@@ -46,18 +47,18 @@ export const Fashion = forwardRef((props, ref) => {
   }
 
   const overlayVariants = {
-    initial: direction => {
+    initial: indexDirection => {
        return {
-          y: direction > 0 ? "200%" : "-200%",
+          y: indexDirection > 0 ? "200%" : "-200%",
        }
     },
     animate: {
        y: 0,
        transition: { duration: 0.6 },
     },
-    exit: direction => {
+    exit: indexDirection => {
        return {
-          y: direction > 0 ? "-200%" : "200%",
+          y: indexDirection > 0 ? "-200%" : "200%",
           transition: { duration: 0.5 },
        }
     },
@@ -74,6 +75,16 @@ export const Fashion = forwardRef((props, ref) => {
     if (slideLeft && item.id === prevIndex) return "prevLeft"
     if (slideLeft && item.id === activeIndex) return "left"
   }
+
+  let newArr = new Array(4)
+
+  const containerArr = (arr) => {
+    for (let i = 0; i < arr.length; i++) {
+      arr[i] = {'id': i, cName: 'container'}
+    }
+  }
+
+  containerArr(newArr)
 
   const carouselItem = (index) => {
     let currIndex = index
@@ -97,31 +108,12 @@ export const Fashion = forwardRef((props, ref) => {
     )
   }
 
-  let containerArr = [
-    {
-      'id': 0,
-      'cName': 'container',
-    },
-    {
-      'id': 1,
-      'cName': 'container',
-    },
-    {
-      'id': 2,
-      'cName': 'container',
-    },
-    {
-      'id': 3,
-      'cName': 'container',
-    },
-  ]
-
   return (
     <section id="fashion" ref={ref}>
         <ul className="fashion-carousel">
           <div className="carousel-item-container">
             {
-              containerArr.map((item, index) => {
+              newArr.map((item, index) => {
                 return (
                   <div className={item.cName} key={item.id} data-active={dataSlides(item)}>
                     {carouselItem(index + 1)}
@@ -150,8 +142,8 @@ export const Fashion = forwardRef((props, ref) => {
           </div>
           <div className="overlay-index-container">
             <div className="overlay-index">
-              <AnimatePresence initial={false} custom={direction}>
-                <motion.h1 key={carouselIndex} variants={overlayVariants} initial="initial" animate="animate" exit="exit" custom={direction}>{carouselIndex + 1}</motion.h1>
+              <AnimatePresence initial={false} custom={indexDirection}>
+                <motion.h1 key={carouselIndex} variants={overlayVariants} initial="initial" animate="animate" exit="exit" custom={indexDirection}>{carouselIndex + 1}</motion.h1>
               </AnimatePresence>
               <div className="overlay-line" data-active={carouselIndex > 8 ? "active" : null}/>
               <h1 className="carousel-length">{fashionArr.length}</h1>
