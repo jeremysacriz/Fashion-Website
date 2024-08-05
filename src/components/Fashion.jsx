@@ -1,4 +1,4 @@
-import { useState, forwardRef } from 'react';
+import { useState, useEffect, forwardRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AnimatePresence, motion } from 'framer-motion';
 import { fashionArr } from "../carouselData.js";
@@ -9,6 +9,7 @@ export const Fashion = forwardRef((props, ref) => {
   const [ overlay, setOverlay ] = useState()
   const [ direction, setDirection ] = useState()
   const [ indexDirection, setIndexDirection ] = useState()
+  const [ product, setProduct ] = useState([])
 
   const dispatch = useDispatch()
   const prevIndex = useSelector(state => state.indexReducer.prevIndex)
@@ -16,6 +17,53 @@ export const Fashion = forwardRef((props, ref) => {
   const carouselIndex = useSelector(state => state.indexReducer.carouselIndex)
 
   let index = fashionArr.length / 5;
+
+  // Takes in an array, adds a property position with value i, which increments every 5 objects
+  const newArray = (arr) => {
+    for (let i = 1; i < arr.length; i += 5) {
+      let newbie = arr.map(item => {
+        if (item.id % 5 == 0) {
+          return {...item, position: i++}
+        }
+
+        return {...item, position: i}
+      })
+
+      return newbie
+    }
+  } 
+
+  // Renames object key in array from 'image' to 'src'
+  const renameKey = (obj, oldKey, newKey) => {
+    if (oldKey !== newKey) {
+      Object.defineProperty(obj, newKey,
+        Object.getOwnPropertyDescriptor(obj, oldKey))
+
+      delete obj[oldKey]
+    }
+  }
+
+  useEffect(() => {
+    const getInfo = async () => {
+      const response = await fetch('https://fakestoreapi.com/products')
+      const items = await response.json()
+      
+      let newProduct = newArray(items)
+      const rename = (arr) => {
+        arr.map(obj => renameKey(obj, 'image', 'src'))
+      }
+    
+      rename(newProduct)
+
+      setProduct(newProduct)
+    }
+
+    getInfo()
+
+    return () => {}
+  }, [])
+
+  console.log(product)
 
   const leftClick = () => {
     setDirection(-1)
@@ -88,7 +136,7 @@ export const Fashion = forwardRef((props, ref) => {
 
   const carouselItem = (index) => {
     let currIndex = index
-    let newArr = fashionArr.filter(item => item.position === currIndex)
+    let newArr = product.filter(item => item.position === currIndex)
       
     return (
       <>
@@ -126,7 +174,7 @@ export const Fashion = forwardRef((props, ref) => {
       {
         overlay === true &&
         <div className="fashion-overlay">
-          <img src={fashionArr[carouselIndex].src} alt="img" />
+          <img src={product[carouselIndex].src} alt="img" />
           <div className="overlay-btns">
             <button type="button" className="overlay-btn-left" onClick={leftIndex}>
               <span className="material-symbols-outlined">chevron_left</span>
