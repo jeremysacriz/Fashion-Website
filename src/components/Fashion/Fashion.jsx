@@ -1,8 +1,8 @@
 import { useState, useEffect, forwardRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AnimatePresence, motion } from 'framer-motion';
-import { fashionArr } from "../carouselData.js";
-import { increase, decrease, increment, decrement, start, end, setCarouselIndex } from '../Redux/actions/actions';
+import { fashionArr } from "../../Redux/carouselData.js";
+import { increase, decrease, increment, decrement, start, end, setCarouselIndex } from '../../Redux/actions/actions.js';
 
 
 export const Fashion = forwardRef((props, ref) => {
@@ -62,8 +62,6 @@ export const Fashion = forwardRef((props, ref) => {
 
     return () => {}
   }, [])
-
-  console.log(product)
 
   const leftClick = () => {
     setDirection(-1)

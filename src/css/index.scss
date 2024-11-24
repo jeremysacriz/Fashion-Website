@@ -13,7 +13,7 @@ body {
 }
 
 #app {
-    @import "./home";
-    @import "./header";
-    @import "./fashion";
+    @import "../components/Home/home";
+    @import "../components/Header/header";
+    @import "../components/Fashion/fashion";
 }

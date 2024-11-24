@@ -1,6 +1,6 @@
-import { Home } from './Home';
-import { Header } from './Header';
-import { Fashion } from './Fashion';
+import { Home } from './Home/Home';
+import { Header } from './Header/Header';
+import { Fashion } from './Fashion/Fashion';
 
 export {
     Home,
